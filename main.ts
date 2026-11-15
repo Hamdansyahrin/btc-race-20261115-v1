@@ -55,12 +55,12 @@ const CFG = {
   armWin: 45, // bars the watch stays armed after the washout
   bounceTrig: 0.003, // enter once the close is this far off the armed low
   dislocWin: 240, // bars in the dislocation check
-  dislocMin: 0.028, // arm only if price fell at least this over dislocWin
+  dislocMin: 0.032, // arm only if price fell at least this over dislocWin
   trendWin: 360, // bars in the trend check
   trendMin: -0.045, // skip only the most vertical long crashes
-  sizeFrac: 0.55, // share of cash spent on one entry
+  sizeFrac: 0.85, // share of cash spent on one entry
   takeProfit: 0.04, // exit at this gain over the entry price
-  stopLoss: 0.018, // exit at this loss under the entry price
+  stopLoss: 0.015, // exit at this loss under the entry price
   trailArm: 0.008, // trailing stop arms at this gain
   trail: 0.008, // exit this far under the best close once armed
   maxHold: 300, // exit after this many bars in the position
