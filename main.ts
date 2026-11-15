@@ -1,13 +1,16 @@
 // Dip-rider: a long-only cbBTC bot for the agent-fun/bars-replay/v1 protocol.
 //
-// Idea in one paragraph: on one-minute bars this pool drifts in short
-// stretches and snaps back just as often. The bot waits until the close
-// sits well below its own recent average (a dip, measured as a z-score
-// over the last Z_WIN closes), checks the longer trend is not in free
-// fall, buys a fixed fraction of cash, and sells when the price reverts
-// toward the mean, when a profit or loss bound is hit, or when the hold
-// runs too long. A drawdown halt flattens everything and parks the bot
-// if the window turns against it. Every decision uses only the bars and
+// Idea in one paragraph: this bot trades only capitulations. A washout
+// (the close at least 2.2 standard deviations under its 120-bar mean)
+// that is also a true dislocation (down at least 3.2% over 240 bars)
+// arms a watch; the entry itself waits for the close to turn up off the
+// armed low, so it buys the first steps of the recovery rather than the
+// falling knife. Exits are a 4% take-profit, a 1.5% stop, a trailing
+// stop once the trade is working, or a 300-bar patience limit. If the
+// first entry is stopped and the price falls a further leg before
+// turning, one re-entry is allowed: capitulations come in two legs and
+// the second leg is the one that bottoms. A 10% drawdown halt flattens
+// everything and parks the bot. Every decision uses only the bars and
 // the account the harness sends; nothing reads a clock or a random
 // source, so two runs over the same bars answer identically.
 //
